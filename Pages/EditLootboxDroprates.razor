@@ -1,0 +1,127 @@
+﻿@page "/editlootboxdroprates"
+
+@using sharpend_webapp.Data
+@using sharpend_webapp.Services
+@using sharpend_webapp.Models
+@using Radzen
+
+@inject CardsService CardsService
+@inject IJSRuntime JSRuntime
+
+<h1>Droprate Edit</h1>
+<div class="row">
+    <div class="col-md-6">
+        <RadzenFieldset Text="First Draw Probabilities" Style="margin-top: 15px">
+            <div class="row">
+                <div class="col-md-8">
+                    @foreach (KeyValuePair<string, int> option in firstDrawProbs)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 align-items-center d-flex">
+                                <RadzenLabel Text=@option.Key />
+                            </div>
+                            <div class="col-md-8">
+                                <RadzenTextBox style="width: 100%;" Value="@option.Value.ToString()" Change=@(args => FirstDrawValueChange(args,option.Key)) />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </RadzenFieldset>
+        <RadzenFieldset Text="Second Draw Probabilities" Style="margin-top: 15px">
+            <div class="row">
+                <div class="col-md-8">
+                    @foreach (KeyValuePair<string, int> option in secondDrawProbs)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 align-items-center d-flex">
+                                <RadzenLabel Text=@option.Key />
+                            </div>
+                            <div class="col-md-8">
+                                <RadzenTextBox style="width: 100%;" Value="@option.Value.ToString()" Change=@(args => FirstDrawValueChange(args,option.Key)) />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </RadzenFieldset>
+        <RadzenFieldset Text="Third Draw Probabilities" Style="margin-top: 15px">
+            <div class="row">
+                <div class="col-md-8">
+                    @foreach (KeyValuePair<string, int> option in thirdDrawProbs)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 align-items-center d-flex">
+                                <RadzenLabel Text=@option.Key />
+                            </div>
+                            <div class="col-md-8">
+                                <RadzenTextBox style="width: 100%;" Value="@option.Value.ToString()" Change=@(args => FirstDrawValueChange(args,option.Key)) />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </RadzenFieldset>
+        <RadzenFieldset Text="Nth Draw Probabilities" Style="margin-top: 15px">
+            <div class="row">
+                <div class="col-md-8">
+                    @foreach (KeyValuePair<string, int> option in NDrawProbs)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 align-items-center d-flex">
+                                <RadzenLabel Text=@option.Key />
+                            </div>
+                            <div class="col-md-8">
+                                <RadzenTextBox style="width: 100%;" Value="@option.Value.ToString()" Change=@(args => FirstDrawValueChange(args,option.Key)) />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </RadzenFieldset>
+        <div class="row justify-content-center">
+            <div class="col" style="margin-top: 16px;">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save Locally" ButtonStyle="ButtonStyle.Secondary"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Dictionary<string, int> firstDrawProbs = new();
+    private Dictionary<string, int> secondDrawProbs = new();
+    private Dictionary<string, int> thirdDrawProbs = new();
+    private Dictionary<string, int> NDrawProbs = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        firstDrawProbs = CardsService.firstDrawProb;
+        secondDrawProbs = CardsService.secondDrawProb;
+        thirdDrawProbs = CardsService.thirdDrawProb;
+        NDrawProbs = CardsService.NDrawProb;
+    }
+
+    async Task FirstDrawValueChange(string value, string name)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"{name} value changed to {value}");
+        firstDrawProbs[name] = Int32.TryParse(value, out var result) ? result : firstDrawProbs[name];
+    }
+
+    async Task SecondDrawValueChange(string value, string name)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"{name} value changed to {value}");
+        secondDrawProbs[name] = Int32.TryParse(value, out var result) ? result : secondDrawProbs[name];
+    }
+
+    async Task ThirdDrawValueChange(string value, string name)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"{name} value changed to {value}");
+        thirdDrawProbs[name] = Int32.TryParse(value, out var result) ? result : thirdDrawProbs[name];
+    }
+
+    async Task NthDrawValueChange(string value, string name)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"{name} value changed to {value}");
+        NDrawProbs[name] = Int32.TryParse(value, out var result) ? result : NDrawProbs[name];
+    }
+}

@@ -1,0 +1,28 @@
+﻿@page "/download"
+
+<div id="background" class="hero-content">
+    <div class="section-inner">
+        <div class="hero-content-text-wrapper">
+            <h2 class="hero-content-title"> Download</h2>
+            <a href="https://firebasestorage.googleapis.com/v0/b/duelyst-prod.appspot.com/o/public%2Fbuilds%2Falpha2%2FDuelyst-windows-prod.zip?alt=media">
+                <RadzenButton Click=@(args => OnClick("Default button")) Text="Click Here"/>
+            </a>
+            <h4 class="hero-content-title">Minimum System Requirements</h4>
+            <ul style="color: white;">
+                <li>OS: Windows 10</li>
+                <li>Processor:  1.7+ GHz or better</li>
+                <li>Video: Must support OpenGL 2.1 or higher, Intel HD 3000 or better</li>
+                <li>Memory: 1 GB RAM</li>
+                <li>Storage: 1 GB available HD space</li>
+                <li>Internet: Broadband Internet Connection</li>
+            </ul>
+                    
+        </div>
+    </div>
+</div>
+
+@code {
+    void OnClick(string buttonName)
+    {
+    }
+}

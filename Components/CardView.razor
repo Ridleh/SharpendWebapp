@@ -1,0 +1,91 @@
+﻿@using sharpend_webapp.Models
+@using System.Globalization;
+
+<div class="card-container">
+    <div class=@GetStylingForLeftSide()>
+        <div class="card-mana">
+            <span>@CardData.cost</span>
+        </div>
+        <div class="card-rarity">
+            <img style="width: 40px;" src=@GetRarityURL()/>
+        </div>
+        <div class="card-attack">
+            <span>@CardData.attack</span>
+        </div>
+        <div class="card-health">
+            <span>@CardData.health</span>
+        </div>
+    </div>
+    <div class="card-right">  
+        <div class="card-set"></div>
+        <div class="card-rotation"></div>
+        <div class="card-image">
+            <img class="@GetImageStyling()" src=@BuildSpriteURL()/>
+        </div>
+        <div class="card-title">
+            <h2 class="legend-name">
+                <a class="legend-post-title">
+                    @CardData.name
+                </a>
+            </h2>
+        </div>
+        <div class="card-type">@CardData.cardType</div>
+        <div class="card-description">@CardData.description</div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public CardData CardData { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (this.CardData == null)
+        {
+            CardData = new()
+                {
+                    cost = 2,
+                    name = "void Pulse",
+                    description = "blah blah blah",
+
+                };
+        }
+    }
+
+    string BuildSpriteURL()
+    {
+        string cardNameFormatted = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(CardData.name).Replace(" ", "-");
+        string url = $"https://duelspot.com/assets/uploads/{cardNameFormatted}.gif";
+        return url;
+    }
+
+    string GetImageStyling()
+    {
+        string cardType = CardData.cardType.ToLower();
+        return cardType;
+    }
+
+    string GetStylingForLeftSide()
+    {
+        string styleString = CardData.cardType == "Unit" ? "stat-spacing" : "";
+        return $"card-left {styleString}";
+    }
+
+    string GetRarityURL()
+    {
+        switch(CardData.rarity){
+            case "common":
+                return "./Assets/Card-Icons/rarity-Common.png";
+            case "epic":
+                return "./Assets/Card-Icons/rarity-Epic.png";
+            case "rare":
+                return "./Assets/Card-Icons/rarity-Rare.png";
+            case "legendary":
+                return "./Assets/Card-Icons/rarity-Legendary.png";
+            default:
+                Console.WriteLine($"Unknown rarity type {CardData.rarity}");
+                return "./Assets/Card-Icons/rarity-Common.png";
+        }
+    }
+}

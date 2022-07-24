@@ -1,0 +1,58 @@
+﻿@page "/editcardrarity"
+
+@using sharpend_webapp.Services
+@using sharpend_webapp.Models
+
+@inject HttpClient Http
+@inject CardsService CardsService
+@inject IJSRuntime JSRuntime
+
+<h1>Edit Card Rarities</h1>
+@if (allCards == null)
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <RadzenDataGrid Data=@allCards FilterMode="FilterMode.Simple" AllowFiltering="true" AllowPaging="true" AllowSorting="true" TItem="CardData" ColumnWidth="200px">
+                <Columns>
+                    <RadzenDataGridColumn TItem="CardData" Property="faction" Title="Faction" />
+                    <RadzenDataGridColumn TItem="CardData" Property="name" Title="Name" />
+                    <RadzenDataGridColumn TItem="CardData" Property="rarity" Title="Rarity">
+                        <Template Context="data">
+                            <RadzenTextBox @bind-Value="data.rarity" Style="width:100%; display: block" Name="Rarity" Placeholder="@data.rarity" Change=@(args => OnValueChange(data, data.rarity)) />
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+            <div class="row justify-content-center">
+                <div class="col" style="margin-top: 16px;">
+                    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save Locally" ButtonStyle="ButtonStyle.Secondary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@code {
+    public IEnumerable<CardData> allCards;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allCards = await Http.GetFromJsonAsync<IEnumerable<CardData>>("sample-data/cards.json");
+        CardsService.SaveCards(allCards);
+    }
+
+    async Task OnValueChange(CardData card, string value)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"{card.name} value changed to {card.rarity}");
+    }
+
+    void SaveCards()
+    {
+        CardsService.SaveCards(allCards);
+    }
+}

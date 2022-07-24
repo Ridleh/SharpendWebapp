@@ -1,0 +1,82 @@
+﻿.hero-content {
+    background-color: #caedfb;
+    background-image: url("./Assets/Images/Backgrounds/BlackAndRedDownloadWallpaper.png");
+    background-position: 50%;
+    background-size: cover;
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.section-inner {
+    padding-top: 8rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0;
+    padding-top: 0px;
+    margin: 0;
+    height: 100%;
+}
+
+.center-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.hero-content-text-wrapper {
+    text-align: center;
+}
+
+.hero-content-title {
+    width: 50vw;
+    margin: 1rem auto;
+    text-shadow: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+}
+
+.bn-button {
+    background: url("./Assets/UIButtons/button_confirm@2x.png");
+    color: #fff;
+    font-size: 16px;
+    min-width: 160px;
+    height: 100px;
+    background-repeat: no-repeat;
+}
+
+.bn-button-content {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    pointer-events: none;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}

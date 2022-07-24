@@ -1,0 +1,136 @@
+﻿@page "/cards"
+@inject HttpClient Http
+
+@using sharpend_webapp.Models 
+
+<div id="background" class="hero-content">
+    <div class="section-inner">
+        <div class="hero-content-text-wrapper">
+            <h2 class="hero-content-title"> CORE SET CARDS</h2>
+        </div>
+    </div>
+</div>
+<div class="card-nav">
+    <ul>
+        <li>
+            <a onclick="document.getElementById('Lyonar').scrollIntoView({behavior:'smooth'})">Lyonar</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Songhai').scrollIntoView({behavior:'smooth'})">Songhai</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Vetruvian').scrollIntoView({behavior:'smooth'})">Vetruvian</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Abyssian').scrollIntoView({behavior:'smooth'})">Abyssian</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Magmar').scrollIntoView({behavior:'smooth'})">Magmar</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Vanar').scrollIntoView({behavior:'smooth'})">Vanar</a>
+        </li>
+        <li>
+            <a onclick="document.getElementById('Neutral').scrollIntoView({behavior:'smooth'})">Neutral</a>
+        </li>
+    </ul>
+</div>
+<div class="cards">
+    @if(AllCardsSorted != null)
+    {
+        @foreach(var factionCards in AllCardsSorted)
+        {
+            <h1 id=@GetSectionID(factionCards) class="faction-header">
+                <img src=@GetFactionIcon(factionCards)/> 
+                @GetFactionName(factionCards)
+            </h1>
+            <div class="card-group">
+                @foreach(var card in factionCards)
+                {
+                    <CardView CardData=card/>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <img style="width: 300px; image-rendering: -moz-crisp-edges;" 
+        src="./Assets/Gifs/Loading/Fog_run.gif"/>
+        <h2 style="color: #ffffff;">Fetching Cards...</h2> 
+    }
+</div>
+
+@code {
+
+    IEnumerable<CardData> LyonarCards;
+    IEnumerable<CardData> SonghaiCards;
+    IEnumerable<CardData> VetruvianCards;
+    IEnumerable<CardData> AbyssianCards;
+    IEnumerable<CardData> MagmarCards;
+    IEnumerable<CardData> VanarCards;
+    IEnumerable<CardData> NeutralCards;
+    IEnumerable<CardData> FetchedCards;
+    IEnumerable<IEnumerable<CardData>> AllCardsSorted;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FetchedCards = await Http.GetFromJsonAsync<IEnumerable<CardData>>("https://cards-bl7zcjxw3q-uc.a.run.app/public/v1/cards/");
+        LyonarCards = FetchedCards.Where(card => card.faction == CardData.Faction.Lyonar).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        SonghaiCards = FetchedCards.Where(card => card.faction == CardData.Faction.Songhai).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        VetruvianCards = FetchedCards.Where(card => card.faction == CardData.Faction.Vetruvian).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        AbyssianCards = FetchedCards.Where(card => card.faction == CardData.Faction.Abyssian).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        MagmarCards = FetchedCards.Where(card => card.faction == CardData.Faction.Magmar).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        VanarCards = FetchedCards.Where(card => card.faction == CardData.Faction.Vanar).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        NeutralCards = FetchedCards.Where(card => card.faction == CardData.Faction.Neutral).OrderBy(e => !e.general).ThenBy(e => e.cost).ThenBy(e => e.name);
+        AllCardsSorted = new List<IEnumerable<CardData>>() {LyonarCards, SonghaiCards, 
+            VetruvianCards, AbyssianCards, MagmarCards, VanarCards, NeutralCards};
+    }
+
+    string GetFactionIcon(IEnumerable<CardData> cards)
+    {
+        CardData sampleCard = cards.ToList()[0];
+        return sampleCard.faction switch
+        {
+            CardData.Faction.Lyonar => "./Assets/Images/lyonar_crest_2x.png",
+            CardData.Faction.Songhai => "./Assets/Images/songhai_crest_2x.png",
+            CardData.Faction.Vetruvian => "./Assets/Images/vetruvian_crest_2x.png",
+            CardData.Faction.Abyssian => "./Assets/Images/abyssian_crest_2x.png",
+            CardData.Faction.Magmar => "./Assets/Images/magmar_crest_2x.png",
+            CardData.Faction.Vanar => "./Assets/Images/vanar_crest_2x.png",
+            CardData.Faction.Neutral => "./Assets/Images/crest_neutral.png",
+            _ => "./Assets/Images/lyonar_crest_2x.png"
+        };
+    }
+
+    string GetFactionName(IEnumerable<CardData> cards)
+    {
+        CardData sampleCard = cards.ToList()[0];
+        return sampleCard.faction switch
+        {
+            CardData.Faction.Lyonar => "LYONAR KINGDOMS",
+            CardData.Faction.Songhai => "SONGHAI EMPIRE",
+            CardData.Faction.Vetruvian => "VETRUVIAN IMPERIUM",
+            CardData.Faction.Abyssian => "ABYSSIAN HOST",
+            CardData.Faction.Magmar => "MAGMAR ASPECTS",
+            CardData.Faction.Vanar => "VANAR KINDRED",
+            CardData.Faction.Neutral => "NEUTRAL",
+            _ => ""
+        };
+    }
+
+    string GetSectionID(IEnumerable<CardData> cards)
+    {
+        CardData sampleCard = cards.ToList()[0];
+        return sampleCard.faction switch
+        {
+            CardData.Faction.Lyonar => "Lyonar",
+            CardData.Faction.Songhai => "Songhai",
+            CardData.Faction.Vetruvian => "Vetruvian",
+            CardData.Faction.Abyssian => "Abyssian",
+            CardData.Faction.Magmar => "Magmar",
+            CardData.Faction.Vanar => "Vanar",
+            CardData.Faction.Neutral => "Neutral",
+            _ => ""
+        };
+    }
+}
