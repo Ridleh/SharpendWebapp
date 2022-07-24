@@ -1,0 +1,61 @@
+﻿@page "/dropratetest"
+
+@using sharpend_webapp.Data
+@using sharpend_webapp.Services
+@using sharpend_webapp.Models
+@using Radzen
+
+@inject HttpClient Http
+@inject CardsService CardsService
+
+<h1>Droprate Test</h1>
+
+<p>This page helps test the drop rate of Cards.</p>
+
+@if (drawnCards == null)
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+else
+{
+    <div>
+        <button class="btn btn-primary" @onclick="@DrawRandomCards">Draw Cards</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Faction</th>
+                    <th>Rarity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var card in drawnCards)
+                {
+                    <tr>
+                        <td>@card.name</td>
+                        <td>@card.faction</td>
+                        <td>@card.rarity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+
+    private List<CardData> drawnCards;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var allCards = await Http.GetFromJsonAsync<List<CardData>>("sample-data/cards.json");
+        CardsService.SaveCards(allCards);
+        drawnCards = CardsService.DrawCardsForLootBox(7).ToList();
+    }
+
+    void DrawRandomCards()
+    {
+        drawnCards = CardsService.DrawCardsForLootBox(7).ToList();
+    }
+
+}

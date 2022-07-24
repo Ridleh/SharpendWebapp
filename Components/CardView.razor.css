@@ -1,0 +1,256 @@
+﻿
+.card-container {
+    position: relative;
+    background: #141a21;
+    display: inline-block;
+    width: 272px;
+    height: 350px;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid #51656d;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-left-radius: 0px;
+    vertical-align: top;
+    -webkit-transition: border 0.3s ease;
+    -moz-transition: border 0.3s ease;
+    transition: border 0.3s ease;
+}
+
+.card-left {
+    float: left;
+    width: 40px;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: relative;
+    font-family: Source Sans Pro, Arial, sans-serif;
+    color: #8dadcf;
+    line-height: 20px;
+    border-right: 1px solid #51656d;
+}
+
+.card-mana {
+    background: #2ba9d8;
+    position: relative;
+    font-size: 25px;
+    line-height: 35px;
+    font-weight: 600;
+    color: #25292e;
+    height: 50px;
+    position: absolute;
+    top: -3px;
+    left: -5px;
+    width: 50px;
+    z-index: 1;
+    padding-top: 30%;
+}
+
+    .card-mana::after {
+        border-top: 20px solid #2ba9d8;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        content: "";
+        height: 0;
+        left: 0;
+        position: absolute;
+        top: 49px;
+        width: 0;
+        z-index: 5;
+    }
+
+.card-mana-padding {
+    padding-top: 14px;
+    display: block;
+}
+
+.card-rarity {
+    position: relative;
+    margin: 90px 0px 10px 0px;
+    line-height: 30px;
+}
+
+.card-right {
+    float: right;
+    width: 230px;
+    height: 100%;
+    background: #1f242a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: Source Sans Pro, Arial, sans-serif;
+}
+
+.card-set {
+    right: 0;
+    top: 0;
+    padding: 10px 10px 0px 0px;
+    position: absolute;
+    color: #6d7782;
+    font-weight: 300;
+    font-size: 12px;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    cursor: help;
+}
+
+.card-rotation {
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    position: absolute;
+    color: #cccccc;
+    font-weight: 300;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.card-image {
+    display: block;
+    margin-bottom: -60px;
+    height: 187px;
+    overflow: hidden;
+}
+
+.spell {
+    width: 110px;
+    margin-top: 30px;
+}
+
+.artifact {
+    width: 110px;
+    margin-top: 30px;
+}
+
+.unit {
+    width: 180px;
+    image-rendering: pixelated;
+}
+
+.card-title {
+    position: relative;
+}
+
+.legend-name {
+    margin-bottom: 3px;
+    margin-top: 35px;
+    line-height: 12px;
+}
+
+.legend-post-title {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+    letter-spacing: 2px !important;
+    font-weight: bold !important;
+}
+
+.card-type {
+    color: #8b94a0;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.card-description {
+    color: #cccccc;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 2px 20px;
+    font-weight: 400;
+    position: relative;
+}
+
+.card-image {
+    display: block;
+    margin-bottom: -60px;
+    height: 187px;
+    overflow: hidden;
+}
+
+.spell {
+    width: 110px;
+    margin-top: 30px;
+}
+
+.card-rarity {
+    position: relative;
+    margin: 90px 0px 10px 0px;
+    line-height: 30px;
+}
+    .card-rarity::before {
+        display: block;
+        font-size: 21px;
+    }
+
+    .card-rarity::after {
+        font-family: Duelspot;
+        -webkit-transform: scale(2.4,1.5);
+        -moz-transform: scale(2.4,1.5);
+        -ms-transform: scale(2.4,1.5);
+        -o-transform: scale(2.4,1.5);
+        transform: scale(2.4,1.5);
+        display: block;
+        margin: 15px 0px 18px 0px;
+        opacity: .6;
+        color: #8dadcf;
+    }
+
+.card-attack {
+    color: #fedb3a;
+}
+
+    .card-attack::before {
+        color: #fedb3a;
+        opacity: .3;
+        display: block;
+        font-size: 21px;
+    }
+
+    .card-attack::after {
+        font-family: Duelspot;
+        -webkit-transform: scale(2.4,1.5);
+        -moz-transform: scale(2.4,1.5);
+        -ms-transform: scale(2.4,1.5);
+        -o-transform: scale(2.4,1.5);
+        transform: scale(2.4,1.5);
+        display: block;
+        margin: 15px 0px 18px 0px;
+        opacity: .6;
+        color: #8dadcf;
+    }
+
+.card-attack-value {
+    position: absolute;
+    top: 38.7%;
+    right: 40%;
+}
+
+.card-health {
+    margin-top: 22px;
+    color: #e32828;
+}
+
+    .card-health::before {
+        color: #e32828;
+        opacity: .3;
+        font-family: Duelspot;
+        display: block;
+        font-size: 21px;
+    }
+
+.card-health-value {
+    position: absolute;
+    top: 38.7%;
+    right: 40%;
+}
+
+.stat-spacing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

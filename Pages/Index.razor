@@ -1,0 +1,363 @@
+@page "/"
+
+<body class="">
+  <main ng-class="{'bn-standalone' : isStandalone}" class="layout-column">
+    <header class="bn-header" ng-show="!isStandalone">
+      <div class="bn-header-container">
+        <div class="bn-header-logo-button-container">
+            <div class="bn-image-background bn-show" 
+                style=" background-image: url('./Assets/Images/Logos/duelyst-logo-desktop.png');">
+            </div>
+        </div>
+      </div>
+    </header>
+    @* ui view *@
+    <ui-view class="layout-column ng-scope">
+      <section class="bn-home">
+        <section class="bn-hero ng-isolate-scope">
+          <div class="bn-hero-container">
+               <video class="bn-hero-background" loop autoplay="autoplay" muted>
+                  <source src="./Assets/Videos/tree_loop.mp4" type="video/mp4">
+                  <source src="./Assets/Videos/tree_loop.ogg" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video> 
+            <div class="bn-hero-content" >
+              <div class="bn-hero-cta-text" style="font-family: ">
+                <h3>Coming Soon</h3>
+                <h1>Duelyst Reforged</h1>
+              </div>
+              <div class="bn-hero-platform-available">
+                <h4>
+                  Available On
+                  <span>
+                    <bn-icon class="bn-hero-window-logos" bn-src="logos:windows"><svg version="1.1" fit=""
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" disabled="">
+                        <path
+                          d="M10.078 1.727A866.522 866.522 0 0 1 21.998 0c.002 3.476 0 6.949.002 10.424-3.973.016-7.946.076-11.922.088-.003-2.93-.003-5.858 0-8.785zM0 3.129c2.988-.46 5.989-.857 8.99-1.232.002 2.883.002 5.763.005 8.646-2.999-.003-5.997.042-8.995.035v-7.45zm0 8.356c2.996-.01 5.991.038 8.987.033 0 2.89.008 5.78.002 8.67C5.996 19.746 3 19.358 0 18.954v-7.469zm10.06.116h11.937c.006 3.465 0 6.93 0 10.399a865.581 865.581 0 0 0-11.92-1.681c-.004-2.905-.012-5.81-.017-8.718z"
+                          fill="#FFF" fill-rule="evenodd"></path>
+                      </svg></bn-icon>PC
+                  </span>
+                </h4>
+              </div>
+              <div class="bn-hero-cta-button-container">
+                <a class="bn-alternate bn-button"
+                  href="https://youtu.be/kYcTdlm-Ju4" target="_blank">
+                  <div class="bn-button-content" ng-transclude="">
+                    <span class="ng-scope">Watch Trailer</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bn-promotions ng-isolate-scope" content="::hc.featuredContent">
+          <div class="bn-promotions-top-slice-container">
+            <div class="bn-promotions-top-slice"></div>
+          </div>
+          <div class="bn-promotions-container">
+            <div class="bn-promotions-cards-container">
+              <a href="/web/20191125060533mp_/https://duelyst.com/news/intensify-revealed" target="" class="
+                  bn-wide-short bn-promotions-card bn-card-hover
+                  ng-isolate-scope
+                " promotions="::promotionsc.content[3]" mask="::promotionsc.backgroundFour" type="'square'">
+                <!-- ngIf: ::promotionsCardc.isVideo -->
+                <div class="bn-promotions-card-title-overlay">
+                  <div class="bn-promotions-card-banner">
+                    <span class="ng-binding">General News</span>
+                  </div>
+                  <div class="bn-promotions-card-date">
+                    <time class="
+                        bn-promotions-date bn-time
+                        ng-binding ng-isolate-scope
+                      " ng-bind="fromNow" datetime="2018-03-12T11:30:00-07:00" title="March 12, 2018 2:30 PM">a long long time ago</time>
+                  </div>
+                </div>
+                <figure class="bn-promotions-card-background bn-image"
+                  bn-background="https://web.archive.org/web/20200227165142/https://cdn-cms.bnea.io/sites/default/files/news/tile-square/tile-square_298.jpg">
+                  <div class="bn-image-background bn-show" style="
+                      background-image: url('https://web.archive.org/web/20200227165142/https://cdn-cms.bnea.io/sites/default/files/news/tile-square/tile-square_298.jpg');
+                    "></div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <figure class="bn-promotions-card-mask bn-image"
+                  bn-background="https://web.archive.org/web/20191128014440/https://cdn-duel.bnea.io/images/promotions/large-2-d6a4e8e3ca.png">
+                  <div class="bn-image-background bn-show" style="
+                      background-image: url('https://web.archive.org/web/20191128014440/https://cdn-duel.bnea.io/images/promotions/large-2-d6a4e8e3ca.png');
+                    "></div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-promotions-card-content">
+                  <div class="bn-promotions-card-gradient"></div>
+                  <!-- ngIf: ::promotionsCardc.isVideo -->
+                  <h1 class="bn-promotions-card-cta ng-binding">
+                    New Game Mechanic - Frontend Dev Tears
+                  </h1>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="bn-promotions-bottom-slice-container">
+            <div class="bn-promotions-bottom-slice"></div>
+          </div>
+        </section>
+        <section class="bn-factions ng-isolate-scope">
+          <div class="bn-factions-container">
+            <h1 class="bn-factions-main-header">Choose From Six Factions</h1>
+            <div class="bn-factions-tile-container">
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                    <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/Abyssian_BackGround.png" style="opacity: 1;"/>
+                  </div>
+                  <div class="bn-image-background"></div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/abyssian_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Abyssian</h4>
+                  <p>
+                    Masters of Deathwatch, the Abyssian Host know best how to
+                    profit from demise. They boast impressive kill effects and
+                    out swarm their opponents with an army of Wraithlings - weak
+                    alone, strong in numbers.
+                  </p>
+                </div>
+              </div>
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                  <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/lyonar_background.png" style="opacity: 1;"/>
+                  </div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/lyonar_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Lyonar</h4>
+                  <p class="bn-factions-tile-meta-lyonar-text">
+                    The Lyonar Kingdoms are proficient close quarter fighters
+                    who use Provoke and Zeal establish a massive presence on the
+                    battlefield. Utilize their impressive healing prowess and
+                    you can whittle down your opponents in a war of attrition.
+                  </p>
+                </div>
+              </div>
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                 <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/magmar_background.png" style="opacity: 1;"/>
+                  </div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/magmar_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Magmar</h4>
+                  <p>
+                    Resilient and large like nature itself, the Magmar Aspects
+                    are a powerful force to reckon with. Their Grow and Rebirth
+                    abilities require foes to invest heavily into tearing down
+                    their units, lest they get torn themselves.
+                  </p>
+                </div>
+              </div>
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                  <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/songhai_background.png" style="opacity: 1;"/>
+                  </div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/songhai_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Songhai</h4>
+                  <p>
+                    Subterfuge is no stranger to the Songhai Empire who steal
+                    the initiative with their displacement, ranged and backstab
+                    techniques. They're also masters of spell synergy, weaving
+                    devastating damage combos.
+                  </p>
+                </div>
+              </div>
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                  <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/vanar_background.png" style="opacity: 1;"/>
+                  </div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/vanar_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Vanar</h4>
+                  <p>
+                    The Vanar Kindred are an elite group of tacticians with the
+                    tools to manipulate the battlefield. Utilizing Infiltrate
+                    minions and Walls, they'll exercise swift and precise
+                    removal. And with the cold as their ally, nothing runs away
+                    far.
+                  </p>
+                </div>
+              </div>
+              <div class="bn-factions-tile">
+                <figure class="bn-factions-tile-background-default bn-image">
+                  <div class="bn-image-background" style="opacity: 1;">
+                      <img class="bn-image-image" src="./Assets/Images/Backgrounds/vetruvian_background.png" style="opacity: 1;"/>
+                  </div>
+                  <figcaption class="bn-image-content" ng-transclude=""></figcaption>
+                </figure>
+                <div class="bn-factions-tile-meta">
+                  <div class="bn-factions-tile-meta-emblem-container">
+                    <figure class="bn-factions-tile-meta-emblem bn-image">
+                      <img class="bn-image-image" src="./Assets/Images/vetruvian_crest_2x.png" style="opacity: 1;"/>
+                    </figure>
+                  </div>
+                  <h4>Vetruvian</h4>
+                  <p>
+                    The Vetruvian Imperium focuses on ephemeral Dervish
+                    summoning and specialized minions. Use a myriad of buffs and
+                    debuffs to swing the fight in your favor, or equip precious
+                    artifacts to make your General a lethal force.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="bn-card-view ng-isolate-scope">
+          <section class="bn-texture-panel ng-isolate-scope">
+            <div class="bn-texture-panel-top-container">
+              <div class="bn-texture-panel-top-center-background"></div>
+            </div>
+            <div class="bn-texture-panel-center-container">
+              <div class="bn-texture-panel-center-center-background"></div>
+            </div>
+            <div class="bn-texture-panel-bottom-container">
+              <div class="bn-texture-panel-bottom-center-background"></div>
+            </div>
+          </section>
+          <div class="bn-card-view-container">
+            <div class="bn-card-view-meta">
+              <div class="bn-card-view-header">
+                <h4>More Than</h4>
+                <h1>700 Unique Cards</h1>
+              </div>
+              <div class="bn-card-view-cards-container">
+                <div class="bn-card-view-card-container">
+                  <div class="bn-card-view-card">
+                    <figure class="bn-card-view-card-background bn-image">
+                      <div class="bn-image-background" style="opacity: 1;">
+                          <img class="bn-image-image" style="opacity: 1;" src="./Assets//StaticCards/phoenixfire.png"/>
+                      </div>
+                    </figure>
+                  </div>
+                  <h5>
+                    <span>Spells</span> can deal direct damage, or have other
+                    effects to control the battlefield.
+                  </h5>
+                </div>
+                <div class="bn-card-view-card-container">
+                  <div class="bn-card-view-card">
+                    <figure class="bn-card-view-card-background bn-image">
+                      <div class="bn-image-background" style="opacity: 1;">
+                          <img class="bn-image-image" style="opacity: 1;" src="./Assets//StaticCards/priestess.png"/>
+                      </div>
+                    </figure>
+                  </div>
+                  <h5>
+                    <span>Deathwatch</span> activates whenever something is
+                    destroyed on the field.
+                  </h5>
+                </div>
+                <div class="bn-card-view-card-container">
+                  <div class="bn-card-view-card">
+                    <figure class="bn-card-view-card-background bn-image">
+                      <div class="bn-image-background" style="opacity: 1;">
+                          <img class="bn-image-image" style="opacity: 1;" src="./Assets//StaticCards/healing_mystic.png"/>
+                      </div>
+                    </figure>
+                  </div>
+                  <h5><span>Healing</span> removes damage taken in battle.</h5>
+                </div>
+                <div class="bn-card-view-card-container">
+                  <div class="bn-card-view-card">
+                    <figure class="bn-card-view-card-background bn-image">
+                      <div class="bn-image-background" style="opacity: 1;">
+                          <img class="bn-image-image" style="opacity: 1;" src="./Assets//StaticCards/arclyteRegalia.png"/>
+                      </div>
+                    </figure>
+                  </div>
+                  <h5><span>Artifacts</span> help to enhance your general.</h5>
+                </div>
+              </div>
+              <a class="bn-button" href="/cards">
+                <bn-ripple></bn-ripple>
+                <div class="bn-button-content" ng-transclude="">
+                  <span class="ng-scope">View All Cards</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="bn-connected">
+          <div class="bn-connected-top-slice-container">
+            <div class="bn-connected-top-slice"></div>
+          </div>
+          <div class="bn-connected-container">
+            <div class="bn-connected-meta-container">
+              <div class="bn-connected-header-nav">
+                <h1 class="bn-connected-header">Stay Connected</h1>
+                <div class="bn-connected-nav">
+                  <bn-tabs bn-callback="connectedc.updateFilter(event, text)" class="ng-isolate-scope">
+                    <div class="bn-tabs-content" ng-transclude="">
+                      <button class="bn-tab bn-switch-tab bn-active ng-scope" tabindex="0">
+                        <div class="bn-tab-content" ng-transclude="" data-text="All">
+                          <span class="ng-scope">All</span>
+                        </div>
+                      </button>
+                      <button class="bn-tab bn-switch-tab ng-scope" tabindex="0">
+                        <div class="bn-tab-content" ng-transclude="" data-text="Twitter">
+                          <span class="ng-scope">Twitter</span>
+                        </div>
+                      </button>
+                    </div>
+                  </bn-tabs>
+                </div>
+              </div>
+              <div class="
+                  bn-connected-content bn-marquee bn-slider
+                  ng-isolate-scope
+                " bn-type="slider">
+                <div class="bn-marquee-content" ng-transclude="">
+                  <div class="bn-connected-feed bn-marquee-items ng-scope">
+                    <!-- ngRepeat: feed in connectedc.feed[0] -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </ui-view>
+  </main>
+</body>
+

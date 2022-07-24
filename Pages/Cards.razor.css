@@ -1,0 +1,157 @@
+﻿a {
+    text-decoration: none;
+}
+
+.hero-content {
+    background-color: #caedfb;
+    background-image: url("./Assets/Images/Backgrounds/Duelyst_Cards_Background.png");
+    background-position: 50%;
+    background-size: cover;
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.section-inner {
+    padding-top: 8rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0;
+    padding-top: 0px;
+    margin: 0;
+    height: 100%;
+}
+
+.hero-content-text-wrapper {
+    text-align: center;
+}
+
+.hero-content-title {
+    width: 50vw;
+    margin: 1rem auto;
+    margin-top: 55vh;
+    text-shadow: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+}
+
+.all-cards-container {
+    text-align: center;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: table;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    height: 100%;
+}
+
+.card-nav {
+    position: sticky;
+    top: 0;
+    background: #9e0032;
+    padding: 2rem 0 !important;
+    z-index: 5;
+    width: 100%;
+}
+
+    .card-nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+    }
+
+    .card-nav ul li {
+        padding: 0;
+        display: inline-block;
+        margin: 0 1.5rem;
+    }
+
+    .card-nav ul, li, a {
+        color: #ffa8c3;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+        cursor: pointer;
+    }
+
+    .card-nav ul li a:hover {
+        color: #fff;
+    }
+
+.cards {
+    position: relative;
+    background: #000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+    .cards img {
+        display: block;
+        margin: 2rem auto 4rem;
+        width: 30%;
+    }
+
+.faction-header {
+    color: #fff;
+    font-weight: 300;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    padding: 4rem;
+    background-image: url("./Assets/Images/Backgrounds/card_set_header_bg.jpg");
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: auto 100%;
+    text-align: center;
+}
+
+.card-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}

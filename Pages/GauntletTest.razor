@@ -1,0 +1,108 @@
+﻿@page "/gauntlettest"
+
+@using sharpend_webapp.Data
+@using sharpend_webapp.Services
+@using sharpend_webapp.Models
+@using Radzen
+
+@inject HttpClient Http
+@inject CardsService CardsService
+@inject IJSRuntime JSRuntime
+
+<h1>Gauntlet Test</h1>
+
+<p>This page helps test the drop rate of Gauntlet Cards.</p>
+
+<div class="row">
+    <div class="col">
+        <h3>Select a Faction</h3>
+        <RadzenSelectBar TValue="IEnumerable<CardData.Faction>" Multiple="@multiSelect" @bind-Value="@selectedFactions">
+            <Items>
+                <RadzenSelectBarItem Text="Lyonar" Value="CardData.Faction.Lyonar" />
+                <RadzenSelectBarItem Text="songhai" Value="CardData.Faction.Songhai" />
+                <RadzenSelectBarItem Text="Vetruvian" Value="CardData.Faction.Vetruvian" />
+                <RadzenSelectBarItem Text="Abyssian" Value="CardData.Faction.Abyssian" />
+                <RadzenSelectBarItem Text="Magmar" Value="CardData.Faction.Magmar" />
+                <RadzenSelectBarItem Text="Vanar" Value="CardData.Faction.Vanar" />
+            </Items>
+        </RadzenSelectBar>
+
+        <h3 style="margin-top: 2rem">Select a Rarity</h3>
+        <RadzenSelectBar TValue="IEnumerable<string>" Multiple="@multiSelect" @bind-Value="@selectedRarities">
+            <Items>
+                <RadzenSelectBarItem Text="Basic" Value="Basic" />
+                <RadzenSelectBarItem Text="Common" Value="Common" />
+                <RadzenSelectBarItem Text="Rare" Value="Rare" />
+                <RadzenSelectBarItem Text="Epic" Value="Epic" />
+                <RadzenSelectBarItem Text="Legendary" Value="Legendary" />
+            </Items>
+        </RadzenSelectBar>
+
+        <h3 style="margin-top: 2rem">Inclue Neutral Cards</h3>
+        <RadzenSelectBar TValue="bool" @bind-Value="@includeNeutrals">
+            <Items>
+                <RadzenSelectBarItem Text="True" Value="true" />
+                <RadzenSelectBarItem Text="False" Value="false" />
+            </Items>
+        </RadzenSelectBar>
+        @if (loadingCards)
+        {
+            <RadzenProgressBar style="margin-top: 2rem" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+        }
+        else
+        {
+            <div style="margin-top: 2rem">
+                <button class="btn btn-primary" @onclick="@DrawRandomCards">Draw Cards</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Faction</th>
+                            <th>Rarity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var card in drawnCards)
+                        {
+                            <tr>
+                                <td>@card.name</td>
+                                <td>@card.faction</td>
+                                <td>@card.rarity</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    string Basic = "basic";
+    string Common = "common";
+    string Rare = "rare";
+    string Epic = "epic";
+    string Legendary = "legendary";
+    bool multiSelect = true;
+
+    IEnumerable<CardData.Faction> selectedFactions = new List<CardData.Faction>() { };
+    IEnumerable<string> selectedRarities = new List<string>() { };
+    bool includeNeutrals = true;
+
+    private List<CardData> drawnCards = new();
+    public bool loadingCards = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var allCards = await Http.GetFromJsonAsync<List<CardData>>("sample-data/cards.json");
+        CardsService.SaveCards(allCards);
+        loadingCards = false;
+    }
+
+    async Task DrawRandomCards()
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", $"factions: {selectedFactions.Count()} rarities: {selectedRarities.Count()}");
+        drawnCards = CardsService.DrawCardsForGauntlet(selectedFactions, selectedRarities, includeNeutrals).ToList();
+    }
+}
